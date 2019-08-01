@@ -1,51 +1,53 @@
-# Gatsby Theme Jam Example Submission
+# Gatsby Theme Hacker News
+- an elegant way to display linked headlines from Hacker News 
+- option to display on styled MDX file
 
-This is a bare-bones Gatsby theme to showcase how a [Theme Jam](https://themejam.gatsbyjs.org) submission should look.
+## This theme includes
 
-See the [live demo](https://gatsby-theme-jam-example.netlify.com)
+- two components `<List />` and `<Headline />` to display Hacker News headlines on your site
+- [gatsby-theme-mdx](https://www.gatsbyjs.org/packages/@horacioh/gatsby-theme-mdx/) configured inside this theme
+- [gatsby-source-hacker-news](https://www.gatsbyjs.org/packages/gatsby-source-hacker-news/?=news) plugin
+
+### Here's the [source code](https://github.com/will-sherman/gatsby-theme-hacker-news)
+### Check out a [live demo](https://gatsby-theme-hacker-news.netlify.com/)
+
+## Example:
+
+<img src="../theme/images/header-and-list.png" alt="example" width="650px" height="366px" style="border: 2px solid black">
 
 ## Installation
 
 To use this theme in your Gatsby sites, follow these instructions:
 
-1.  Install the theme
-    ```sh
-    npm install --save gatsby-theme-jam-example
-    ```
+1. Install the theme
+```sh
+npm install --save /gatsby-theme-hacker-news
+```
 
-2.  Add the theme to your `gatsby-config.js`:
-    ```js
-    module.exports = {
-      plugins: [
-        'gatsby-theme-jam-example'
-      ]
-    }
-    ```
+2. Add the theme to your `gatsby-config.js`:
 
-3.  Start your site
-    ```sh
-    gatsby develop
-    ```
+```js
+module.exports = {
+  plugins: ["gatsby-theme-hacker-news"],
+}
+```
 
-## Submission Checklist
+3. Start your site
 
-To ensure your Theme Jam submission [follows the rules](https://themejam.gatsbyjs.org/rules), use this checklist:
+```sh
+gatsby develop
+```
 
-- [ ] Use our [accessibility guide][a11y] to ensure your site meets our accessibility standards
-- [ ] Run a performance audit using [Lighthouse][] and/or [WebPageTest][]
-- [ ] Set up a live demo using [Netlify][] or [GitHub Pages][]
-- [ ] Add installation documentation to the README
-- [ ] Update the `name` field in `package.json`
-- [ ] Update the `author` field in `package.json`
-- [ ] Update the `repository` field in `package.json`
-- [ ] Make sure the theme’s `keywords` in `package.json` include `gatsby`, `gatsby-theme`, and `gatsby-plugin`
-- [ ] Publish your theme to npm ([docs][npmpublish])
-- [ ] Submit your theme at https://themejam.gatsbyjs.org
+### To change the number of displayed headlines:
+- create a [shadow component](https://www.gatsbyjs.org/blog/2019-04-29-component-shadowing/) `List.js`
+- in the shadow component, splice the map function. For example, to display 11 results:  
 
-[a11y]: https://gatsbyjs.org/docs/making-your-site-accessible#how-to-improve-accessibility
-[Lighthouse]: https://developers.google.com/web/tools/lighthouse/
-[axe]: https://www.deque.com/axe/
-[WebPageTest]: http://webpagetest.org/
-[Netlify]: https://netlify.com
-[GitHub Pages]: https://pages.github.com/
-[npmpublish]: https://docs.npmjs.com/cli/publish
+```js
+{data.allHnStory.edges.splice(0,11).map(({ node })
+```
+
+- alternately, modify the GraphQL query:
+
+```js
+allHnStory(sort: {fields: [order]}, limit: 11)
+```
