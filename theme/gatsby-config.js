@@ -1,6 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Theme Jam Example Submission",
+    title: 'Gatsby Theme Hacker News',
   },
-  plugins: ["gatsby-plugin-theme-ui"],
+  plugins: [
+    'gatsby-plugin-theme-ui',
+    'gatsby-source-hacker-news',
+    '@horacioh/gatsby-theme-mdx',
+  ],
 }

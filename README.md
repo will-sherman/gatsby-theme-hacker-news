@@ -1,58 +1,57 @@
-# Gatsby Theme Jam Submission Example
+# Gatsby Theme Hacker News
+- an elegant way to display linked headlines from Hacker News 
+- option to display on styled MDX file
 
-This repo is an example and potential starting point for theme creators.
+## This theme includes
 
-It includes:
-- a bare-bones theme (located in `theme/`) that includes basic setup
-- a demo site (located in `demo/`) that installs the theme
-- a Yarn workspaces configuration so the theme and demo can be worked on simultaneously
+- two components `<List />` and `<Headline />` to display Hacker News headlines to your site
+- [gatsby-theme-mdx](https://www.gatsbyjs.org/packages/@horacioh/gatsby-theme-mdx/) configured inside this theme
+- [gatsby-source-hacker-news](https://www.gatsbyjs.org/packages/gatsby-source-hacker-news/?=news) plugin
 
-## How to use this repo
+### Here's the [source code](https://github.com/will-sherman/gatsby-theme-hacker-news)
 
-**NOTE:** Make sure to replace `USERNAME` with your GitHub username and `THEMENAME` with your theme name.
+## Example:
 
-1.  Fork this repo.
+<img src="./theme/images/header-and-list.png" alt="example" width="650px" height="366px" style="border: 2px solid black">
 
-2.  Rename the forked repo `gatsby-theme-THEMENAME`. (Make sure to replace `THEMENAME` with your chosen name.)
+## Installation
 
-3.  Get the theme set up locally.
-    ```sh
-    # clone the repo
-    git clone git@github.com:USERNAME/gatsby-theme-THEMENAME.git
+To use this theme in your Gatsby sites, follow these instructions:
 
-    # move into the directory
-    cd gatsby-theme-THEMENAME
+1. Install the theme (coming soon)
 
-    # install dependencies
-    yarn
-    ```
+```sh
+npm install --save /gatsby-theme-news
+```
 
-4.  Update `theme/package.json` with your info.
-    ```diff
-      {
-    +   "name": "gatsby-theme-THEMENAME",
-    +   "author": "Your Name <name@example.com>",
-        "repository": {
-          "type": "git",
-    +     "url": "https://github.com/USERNAME/gatsby-theme-THEMENAME.git"
-        },
-    ```
+2. Add the theme to your `gatsby-config.js`:
 
-5.  Start the demo site.
-    ```sh
-    yarn workspace demo develop
-    ```
+```js
+module.exports = {
+  plugins: ["gatsby-theme-hacker-news"],
+}
+```
 
-    The demo will start at http://localhost:8000
+3. Start your site
 
-    **NOTE:** If you’re new to Yarn workspaces, check out [this post](https://www.gatsbyjs.org/blog/2019-05-22-setting-up-yarn-workspaces-for-theme-development/) for details.
+```sh
+gatsby develop
+```
 
-6.  Start editing the theme! The demo site is configured to use the local theme, so any changes you make to the local `theme` directory will be reflected on the demo site for easy local development.
+### To change the number of headlines:
+- create a [shadow component](https://www.gatsbyjs.org/blog/2019-04-29-component-shadowing/) `List.js`
+- in the shadow component, splice the map function. For example, to display 11 results:  
 
-7.  Follow the [submission checklist](./theme/README.md#submission-checklist) to make sure your theme qualifies to win!
+```js
+{data.allHnStory.edges.splice(0,11).map(({ node })
+```
 
-8.  [Submit your theme](https://themejam.gatsbyjs.org/submit) to win!
+- alternately, modify the GraphQL query:
 
-## More information
+```js
+allHnStory(sort: {fields: [order]}, limit: 11)
+```
 
-For contest rules and more information, see [the Theme Jam website](https://themejam.gatsbyjs.org).
+### Notes:
+- during testing, to enable shadow component `List.js` it may also be necessary to create an unmodified shadow component `Headline.js`  
+- modifying the GraphQL query to limit results seems error prone. Try splicing instead.
