@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/will-sherman/gatsby-theme-hacker-news.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {

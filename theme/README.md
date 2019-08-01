@@ -11,10 +11,6 @@
 ### Here's the [source code](https://github.com/will-sherman/gatsby-theme-hacker-news)
 ### Check out a [live demo](https://gatsby-theme-hacker-news.netlify.com/)
 
-## Example:
-
-<img src="../theme/images/header-and-list.png" alt="example" width="650px" height="366px" style="border: 2px solid black">
-
 ## Installation
 
 To use this theme in your Gatsby sites, follow these instructions:
