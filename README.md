@@ -21,7 +21,7 @@ To use this theme in your Gatsby sites, follow these instructions:
 
 1. Install the theme
 ```sh
-npm install --save /gatsby-theme-hacker-news
+npm install --save gatsby-theme-hacker-news
 ```
 
 2. Add the theme to your `gatsby-config.js`:
